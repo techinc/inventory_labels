@@ -5,6 +5,9 @@ def translate(dict, text):
     regex = re.compile( pattern )
     return regex.sub( lambda mo: dict[mo.string[mo.start():mo.end()]], text )
 
+def strip_duplicate_newlines(text):
+	return '\n'.join(x for x in text.split('\n') if x != '')
+
 def latex_escape(text):
     mapping = { u'<' : u'\\textless{}',
                 u'>' : u'\\textgreater{}',
@@ -17,9 +20,10 @@ def latex_escape(text):
                 u'|' : u'\\docbooktolatexpipe{}',
                 u'{' : u'\\{',
                 u'}' : u'\\}',
+                u'\n': u'\\\\',
                 u'\\': u'\\textbackslash{}', }
 
-    return translate(mapping, text)
+    return translate(mapping, strip_duplicate_newlines(text))
 
 if __name__ == '__main__':
     _, input_json, qrvector = sys.argv
