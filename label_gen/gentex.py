@@ -30,7 +30,7 @@ if __name__ == '__main__':
     for k,v in d.iteritems():
         val[k] = latex_escape(v).encode('utf-8')
     qr_prog = subprocess.Popen([qrvector, '-pgf'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-    qr_pgf = qr_prog.communicate(input=d['url'])[0]
+    qr_pgf = qr_prog.communicate(input=d['url'].encode('utf-8'))[0]
 
     #val['id'] = val['id'].replace("/", "/\hspace{0pt}")
 
