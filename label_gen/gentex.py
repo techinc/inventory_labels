@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
     #val['id'] = val['id'].replace("/", "/\hspace{0pt}")
 
-    print (u"""
+    print ("""
 \\documentclass{article}
 \\usepackage{geometry}
 \\special{papersize=60mm,50mm}
