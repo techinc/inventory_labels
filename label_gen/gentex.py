@@ -30,6 +30,8 @@ if __name__ == '__main__':
 
     d = json.loads(''.join(file(input_json).readlines()))
 
+    d['permissions'] = '\n'.join(d['permissions'])
+
     val = {}
     for k,v in d.iteritems():
         val[k] = latex_escape(v).encode('utf-8')
@@ -59,33 +61,35 @@ if __name__ == '__main__':
 
 \\begin{document}
 
-\\begin{textblock}{30}[0,.5](0,12)
-\\begin{center}
-\\verb|chown| \\\\ \\textsf{\\large \\textbf{"""+val['owner']+ """}} \\\\ \\vspace{2mm}
-\\verb|chmod| \\\\ \\textsf{\\large \\textbf{"""+val['permissions'] + """}}
-\\end{center}
-\\end{textblock}
-
-\\begin{textblock}{24}(32,0)
-\\begin{pgfpicture}{0mm}{0mm}{24mm}{24mm}
-\\pgfputat{\\pgfpoint{0mm}{0mm}}{
-\\begin{pgfmagnify}{2.4}{2.4} """+ qr_pgf+ """ \\end{pgfmagnify} }
-\\end{pgfpicture}
-\\end{textblock}
-
-\\begin{textblock}{58}[.5,0](28,23)
-\\begin{center}\\textsf{\\Large \\textbf{"""+val['description']+"""}}\\end{center}
-\\end{textblock}
-
 \\begin{spacing}{.8}
-\\begin{textblock}{56}[.5,.5](28,37)
-\\begin{center}"""+val['comments']+"""\\end{center}
+\\begin{textblock}{36}[0,0](0,-4)
+\\begin{center}
+\\verb|chown| \\\\ \\textsf{\\textbf{"""+val['owner']+ """}} \\vspace{1mm} \\\\
+\\verb|chmod| \\\\ \\textsf{\\textbf{"""+val['permissions'] + """}}
+\\end{center}
 \\end{textblock}
 \\end{spacing}
 
-\\begin{textblock}{58}[.5,1](28,50)
-\\begin{center}\\textbf{"""+val['id']+"""}\\end{center}
+\\begin{textblock}{18}(38,0)
+\\begin{pgfpicture}{0mm}{0mm}{18mm}{18mm}
+\\pgfputat{\\pgfpoint{0mm}{0mm}}{
+\\begin{pgfmagnify}{1.8}{1.8} """+ qr_pgf+ """ \\end{pgfmagnify} }
+\\end{pgfpicture}
 \\end{textblock}
+
+\\begin{spacing}{.8}
+\\begin{textblock}{58}[.5,0](28,19)
+\\begin{center}
+\\textsf{\\large \\textbf{"""+val['description']+"""}}
+\\vspace{1.5mm}
+
+"""+val['comments']+"""
+\\vspace{1mm}
+
+\\textbf{"""+val['id']+"""}
+\\end{center}
+\\end{textblock}
+\\end{spacing}
 
 \\end{document}
 """)
