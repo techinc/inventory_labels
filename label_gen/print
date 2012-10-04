@@ -1,0 +1,5 @@
+#!/bin/bash
+python gentex.py $1.json ./qrvector > $1.tex
+xelatex $1.tex
+pdf2ps $1.pdf
+lpr -h $1.ps
