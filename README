@@ -3,3 +3,4 @@
 
 label_gen/ : label generation
 
+Needed packages (Ubuntu): texlive-xetex texlive-latex-recommended texlive-latex-extra

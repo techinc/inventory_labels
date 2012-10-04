@@ -32,9 +32,8 @@ def generate(owner, permissions, name, description):
     name = latex_escape(name).encode('utf-8')
     description = latex_escape(description).encode('utf-8')
 
-    f = open("logo.pgf")
-    logo = f.read()
-    f.close()
+    with open("logo.pgf") as f:
+        logo = f.read()
     
     return """
 \\documentclass{article}
@@ -94,6 +93,5 @@ if __name__ == '__main__':
     _, file, owner, permissions, name, description = sys.argv
 
     latex = generate(owner, permissions, name, description)
-    f = open(file, "w")
-    f.write(latex)
-    f.close()
+    with open(file, "w") as f:
+        f.write(latex)
