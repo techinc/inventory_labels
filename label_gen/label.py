@@ -1,4 +1,4 @@
-import sys, re, datetime, subprocess
+import sys, os, re, datetime, subprocess
 
 def translate(dict, text):
     pattern = "(" + "|".join( re.escape(key) for key in dict.keys() ) + ")"
@@ -25,7 +25,7 @@ def latex_escape(text):
 
     return translate(mapping, strip_duplicate_newlines(text))
     
-def generate(owner, permissions, name, description):
+def genlatex(owner, permissions, name, description):
 
     owner = latex_escape(owner).encode('utf-8')
     permissions = latex_escape(permissions).encode('utf-8')
@@ -88,9 +88,22 @@ def generate(owner, permissions, name, description):
 \\end{document}
 """
 
-if __name__ == '__main__':
-    _, file, owner, permissions, name, description = sys.argv
-
-    latex = generate(owner, permissions, name, description)
-    with open(file, "w") as f:
+def printlatex(latex):
+    tmp = os.environ.get("TMPDIR","/tmp/")
+    with open(tmp+"label.tex", "w") as f:
         f.write(latex)
+    subprocess.check_call(["xelatex", tmp+"label.tex"])
+    subprocess.check_call(["pdf2ps", tmp+"label.pdf"])
+    subprocess.check_call(["lpr", "-h", tmp+"label.ps"])
+    
+if __name__ == '__main__':
+    _, cmd, owner, permissions, name, description = sys.argv
+    
+    if cmd == "gen":
+        latex = genlatex(owner, permissions, name, description)
+        print(latex)
+    elif cmd == "print":
+        latex = genlatex(owner, permissions, name, description)
+        printlatex(latex)
+    else:
+        print "Usage: "+_+" gen|print owner permissions name description"
