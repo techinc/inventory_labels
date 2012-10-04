@@ -57,7 +57,7 @@ def generate(owner, permissions, name, description):
 \\begin{document}
 
 \\begin{spacing}{.8}
-\\begin{textblock}{36}[0,0](0,-4)
+\\begin{textblock}{36}[0,0](0,0)
 \\begin{center}
 \\verb|owner| \\\\ \\textsf{\\textbf{"""+owner+ """}} \\vspace{1mm} \\\\
 \\verb|permissions| \\\\ \\textsf{\\textbf{"""+permissions+ """}}
@@ -66,10 +66,9 @@ def generate(owner, permissions, name, description):
 \\end{spacing}
 
 \\begin{textblock}{18}(38,0)
-\\begin{pgfpicture}{0mm}{0mm}{18mm}{18mm}
-\\pgfputat{\\pgfpoint{0mm}{0mm}}{
-\\begin{pgfmagnify}{1.8}{1.8} """+logo+ """ \\end{pgfmagnify} }
-\\end{pgfpicture}
+\\begin{picture}(1,10)
+\\put(-10,-45){\includegraphics[width=18mm]{techinc.eps}}
+\\end{picture}
 \\end{textblock}
 
 \\begin{spacing}{.8}
