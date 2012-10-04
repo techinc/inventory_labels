@@ -4,3 +4,10 @@
 label_gen/ : label generation
 
 Needed packages (Ubuntu): texlive-xetex texlive-latex-recommended texlive-latex-extra
+
+Usage for label:
+
+label.py gen|print owner permissions name description
+
+gen   - Generate LaTeX into stdout
+print - Send LaTeX directly to printer

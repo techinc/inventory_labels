@@ -95,9 +95,15 @@ def printlatex(latex):
     subprocess.check_call(["xelatex", tmp+"label.tex"])
     subprocess.check_call(["pdf2ps", tmp+"label.pdf"])
     subprocess.check_call(["lpr", "-h", tmp+"label.ps"])
-    
+    os.remove(tmp+"label.tex")
+    os.remove(tmp+"label.pdf")
+    os.remove(tmp+"label.ps")
 if __name__ == '__main__':
-    _, cmd, owner, permissions, name, description = sys.argv
+    if(len(sys.argv) < 6):
+        _ = sys.argv[0]
+        cmd = ""
+    else:
+        _, cmd, owner, permissions, name, description = sys.argv
     
     if cmd == "gen":
         latex = genlatex(owner, permissions, name, description)
