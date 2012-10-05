@@ -80,7 +80,7 @@ def genlatex(owner, permissions, name, description):
 """+description+"""
 \\vspace{1mm}
 
-\\textbf{"""+datetime.date.today().strftime("%d-%m-%y")+"""}
+\\textbf{"""+datetime.date.today().strftime("%Y-%m-%d")+"""}
 \\end{center}
 \\end{textblock}
 \\end{spacing}
