@@ -31,9 +31,6 @@ def genlatex(owner, permissions, name, description):
     permissions = latex_escape(permissions).encode('utf-8')
     name = latex_escape(name).encode('utf-8')
     description = latex_escape(description).encode('utf-8')
-
-    with open("logo.pgf") as f:
-        logo = f.read()
     
     return """
 \\documentclass{article}
@@ -98,12 +95,13 @@ def printlatex(latex):
     os.remove(tmp+"label.tex")
     os.remove(tmp+"label.pdf")
     os.remove(tmp+"label.ps")
+    
 if __name__ == '__main__':
     if(len(sys.argv) < 6):
         _ = sys.argv[0]
         cmd = ""
     else:
-        _, cmd, owner, permissions, name, description = sys.argv
+        _, cmd, owner, permissions, name, description = sys.argvgo
     
     if cmd == "gen":
         latex = genlatex(owner, permissions, name, description)
