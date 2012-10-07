@@ -1,4 +1,4 @@
-import sys, os, re, datetime, subprocess
+import sys, os, re, datetime, subprocess, shutil
 
 def translate(dict, text):
     pattern = "(" + "|".join( re.escape(key) for key in dict.keys() ) + ")"
@@ -89,9 +89,11 @@ def printlatex(latex):
     tmp = os.environ.get("TMPDIR","/tmp/")
     with open(tmp+"label.tex", "w") as f:
         f.write(latex)
+    shutil.copyfile("techinc.eps", tmp+"techinc.eps")
     subprocess.check_call(["xelatex", tmp+"label.tex"])
-    subprocess.check_call(["pdf2ps", tmp+"label.pdf"])
+    subprocess.check_call(["pdf2ps", tmp+"label.pdf", tmp+"label.ps"])
     subprocess.check_call(["lpr", "-h", tmp+"label.ps"])
+    os.remove(tmp+"techinc.eps")
     os.remove(tmp+"label.tex")
     os.remove(tmp+"label.pdf")
     os.remove(tmp+"label.ps")
@@ -101,7 +103,7 @@ if __name__ == '__main__':
         _ = sys.argv[0]
         cmd = ""
     else:
-        _, cmd, owner, permissions, name, description = sys.argvgo
+        _, cmd, owner, permissions, name, description = sys.argv[0:6]
     
     if cmd == "gen":
         latex = genlatex(owner, permissions, name, description)
