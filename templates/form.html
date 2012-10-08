@@ -7,9 +7,9 @@
     <h1>Label Printer</h1>
     <form action="/print" method="post">
         <label for="name">Name: </label><input type="text" name="name" placeholder="Name"/><br/>
-        <label for="desc">Description: </label><input type="textarea" rows="3" name="desc" placeholder="Description"/><br/>
-        <label for="owner">Owner: </label><input type="textarea" rows="3" name="owner" placeholder="TechInc"/><br/>
-        <label for="perms">Permissions: </label><input type="textarea" rows="3" name="perms" placeholder="Hack it"/><br/>
+        <label for="desc">Description: </label><input type="text" name="desc" placeholder="Description"/><br/>
+        <label for="owner">Owner: </label><input type="text" name="owner" placeholder="TechInc"/><br/>
+        <label for="perms">Permissions: </label><input type="text" name="perms" placeholder="Hack it"/><br/>
         <input name="submit" type="submit" value="Print"/>
     </form>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
