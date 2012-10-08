@@ -102,9 +102,9 @@ def printlatex(latex):
         f.write(latex)
     subprocess.check_call(["xelatex", "label.tex"])
     subprocess.check_call(["pdf2ps", "label.pdf", "label.ps"])
-    #subprocess.check_call(["lpr", "-h", "label.ps"])
+    subprocess.check_call(["lpr", "-h", "label.ps"])
     os.chdir(olddir)
-    #shutil.rmtree(tmp)
+    shutil.rmtree(tmp)
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate and print labels for Technologia Incognita')
