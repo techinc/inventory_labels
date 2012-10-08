@@ -100,11 +100,11 @@ def printlatex(latex):
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate and print labels for Technologia Incognita')
-    parser.add_argument('action', choices=['gen','print'])
-    parser.add_argument('-o', '--owner', default='Tech Inc')
-    parser.add_argument('-p', '--perms', default='Hack it')
-    parser.add_argument('name')
-    parser.add_argument('description')
+    parser.add_argument('action', choices=['gen','print'], help="[gen]erate LaTeX to stdout or [print] to send directly to printer.")
+    parser.add_argument('-o', '--owner', default='TechInc', help="who the item belongs to [TechInc]")
+    parser.add_argument('-p', '--perms', default='Hack it', help="what we're allowed to do with it [Hack it]")
+    parser.add_argument('name', help="the name of the item")
+    parser.add_argument('description', help='a description of the item')
     args = parser.parse_args()
     
     if args.action == "gen":
