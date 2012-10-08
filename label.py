@@ -89,7 +89,7 @@ def printlatex(latex):
     with open(tmp+"label.tex", "w") as f:
         f.write(latex)
     shutil.copyfile("techinc.eps", tmp+"techinc.eps")
-    subprocess.check_call(["xelatex", tmp+"label.tex", "-output-directory="+tmp])
+    subprocess.check_call(["xelatex", tmp+"label.tex", '-output-directory="'+tmp+'"'])
     subprocess.check_call(["pdf2ps", tmp+"label.pdf", tmp+"label.ps"])
     subprocess.check_call(["lpr", "-h", tmp+"label.ps"])
     shutil.rmtree(tmp)
