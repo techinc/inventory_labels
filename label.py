@@ -84,14 +84,17 @@ def generate(owner, permissions, name, description):
 \\end{document}"""
 
 def printlatex(latex):
+    olddir = os.getcwd()
     tmp = os.environ.get("TMPDIR","/tmp/")+"label/"
     os.mkdir(tmp)
-    with open(tmp+"label.tex", "w") as f:
-        f.write(latex)
     shutil.copyfile("techinc.eps", tmp+"techinc.eps")
-    subprocess.check_call(["xelatex", tmp+"label.tex", '-output-directory="'+tmp+'"'])
-    subprocess.check_call(["pdf2ps", tmp+"label.pdf", tmp+"label.ps"])
-    subprocess.check_call(["lpr", "-h", tmp+"label.ps"])
+    os.chdir(tmp)
+    with open("label.tex", "w") as f:
+        f.write(latex)
+    subprocess.check_call(["xelatex", "label.tex"])
+    subprocess.check_call(["pdf2ps", "label.pdf", "label.ps"])
+    subprocess.check_call(["lpr", "-h", "label.ps"])
+    os.chdir(olddir)
     shutil.rmtree(tmp)
     
 if __name__ == '__main__':
