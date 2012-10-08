@@ -1,6 +1,7 @@
 <html>
 <head>
     <title>Label Printer</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
 </head>
 <body>
     <h1>Label Printer</h1>
@@ -11,5 +12,6 @@
         <label for="perms">Permissions: </label><input type="textarea" rows="3" name="perms" placeholder="Hack it"/><br/>
         <input name="submit" type="submit" value="Print"/>
     </form>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 </body>
 </html>
