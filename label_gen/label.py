@@ -32,8 +32,7 @@ def genlatex(owner, permissions, name, description):
     name = latex_escape(name).encode('utf-8')
     description = latex_escape(description).encode('utf-8')
     
-    return """
-\\documentclass{article}
+    return """\\documentclass{article}
 \\usepackage{geometry}
 \\special{papersize=60mm,50mm}
 \\geometry{verbose,paperwidth=60mm,paperheight=50mm,tmargin=2mm,bmargin=2mm,lmargin=2mm,rmargin=2mm}
@@ -82,8 +81,7 @@ def genlatex(owner, permissions, name, description):
 \\end{textblock}
 \\end{spacing}
 
-\\end{document}
-"""
+\\end{document}"""
 
 def printlatex(latex):
     tmp = os.environ.get("TMPDIR","/tmp/")
