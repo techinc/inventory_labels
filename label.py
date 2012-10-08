@@ -84,17 +84,15 @@ def generate(owner, permissions, name, description):
 \\end{document}"""
 
 def printlatex(latex):
-    tmp = os.environ.get("TMPDIR","/tmp/")
+    tmp = os.environ.get("TMPDIR","/tmp/")+"label/"
+    os.mkdir(tmp)
     with open(tmp+"label.tex", "w") as f:
         f.write(latex)
     shutil.copyfile("techinc.eps", tmp+"techinc.eps")
     subprocess.check_call(["xelatex", tmp+"label.tex"])
     subprocess.check_call(["pdf2ps", tmp+"label.pdf", tmp+"label.ps"])
     subprocess.check_call(["lpr", "-h", tmp+"label.ps"])
-    os.remove(tmp+"techinc.eps")
-    os.remove(tmp+"label.tex")
-    os.remove(tmp+"label.pdf")
-    os.remove(tmp+"label.ps")
+    shutil.rmtree(tmp)
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate and print labels for Technologia Incognita')
