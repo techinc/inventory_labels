@@ -25,7 +25,7 @@ def latex_escape(text):
 
     return translate(mapping, strip_duplicate_newlines(text))
     
-def genlatex(owner, permissions, name, description):
+def generate(owner, permissions, name, description):
 
     owner = latex_escape(owner).encode('utf-8')
     permissions = latex_escape(permissions).encode('utf-8')
@@ -106,8 +106,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     
     if args.action == "gen":
-        latex = genlatex(args.owner, args.perms, args.name, args.description)
+        latex = generate(args.owner, args.perms, args.name, args.description)
         print(latex)
     elif args.action == "print":
-        latex = genlatex(args.owner, args.perms, args.name, args.description)
+        latex = generate(args.owner, args.perms, args.name, args.description)
         printlatex(latex)
