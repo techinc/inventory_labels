@@ -39,7 +39,7 @@ def generate(owner, permissions, name, description):
 \\usepackage{fontspec}
 \\usepackage{xunicode}
 \\usepackage{xltxtra}
-%\\renewcommand{\\familydefault}{\\sfdefault} 
+\\renewcommand{\\familydefault}{\\sfdefault} 
 \\usepackage{pgf}
 \\usepackage[absolute]{textpos}
 \\usepackage{setspace}
@@ -52,24 +52,16 @@ def generate(owner, permissions, name, description):
 
 \\begin{document}
 
-\\begin{spacing}{.8}
-\\begin{textblock}{36}[0,0](0,0)
-\\begin{center}
-\\verb|owner| \\\\ \\textsf{\\textbf{"""+owner+ """}} \\vspace{1mm} \\\\
-\\verb|permissions| \\\\ \\textsf{\\textbf{"""+permissions+ """}}
-\\end{center}
-\\end{textblock}
-\\end{spacing}
-
-\\begin{textblock}{18}(38,0)
+\\begin{textblock}{18}[0,0](41,26)
 \\begin{picture}(1,10)
 \\put(-10,-45){\includegraphics[width=18mm]{techinc.eps}}
 \\end{picture}
 \\end{textblock}
 
 \\begin{spacing}{.8}
-\\begin{textblock}{58}[.5,0](28,19)
+\\begin{textblock}{58}[.5,0](28,0)
 \\begin{center}
+\\vspace{-3mm}
 \\textsf{\\large \\textbf{"""+name+"""}}
 \\vspace{1.5mm}
 
@@ -78,6 +70,23 @@ def generate(owner, permissions, name, description):
 
 \\textbf{"""+datetime.date.today().strftime("%Y-%m-%d")+"""}
 \\end{center}
+\\end{textblock}
+\\end{spacing}
+
+\\begin{spacing}{.8}
+\\begin{textblock}{36}[0,1](0,53)
+\\verb|owner|
+\\begin{center}
+\\vspace{-2mm}
+\\textsf{\\textbf{"""+owner+ """}} \\vspace{1mm} \\\\
+\\end{center}
+\\vspace{-2mm}
+\\verb|permissions|
+\\begin{center}
+\\vspace{-2mm}
+\\textsf{\\textbf{"""+permissions+ """}}
+\\end{center}
+\\vspace{6mm}
 \\end{textblock}
 \\end{spacing}
 
@@ -93,9 +102,9 @@ def printlatex(latex):
         f.write(latex)
     subprocess.check_call(["xelatex", "label.tex"])
     subprocess.check_call(["pdf2ps", "label.pdf", "label.ps"])
-    subprocess.check_call(["lpr", "-h", "label.ps"])
+    #subprocess.check_call(["lpr", "-h", "label.ps"])
     os.chdir(olddir)
-    shutil.rmtree(tmp)
+    #shutil.rmtree(tmp)
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate and print labels for Technologia Incognita')
