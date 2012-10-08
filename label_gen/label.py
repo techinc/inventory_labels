@@ -1,4 +1,4 @@
-import sys, os, re, datetime, subprocess, shutil
+import sys, os, re, datetime, subprocess, shutil, argparse
 
 def translate(dict, text):
     pattern = "(" + "|".join( re.escape(key) for key in dict.keys() ) + ")"
@@ -99,17 +99,17 @@ def printlatex(latex):
     os.remove(tmp+"label.ps")
     
 if __name__ == '__main__':
-    if(len(sys.argv) < 6):
-        _ = sys.argv[0]
-        cmd = ""
-    else:
-        _, cmd, owner, permissions, name, description = sys.argv[0:6]
+    parser = argparse.ArgumentParser(description='Generate and print labels for Technologia Incognita')
+    parser.add_argument('action', choices=['gen','print'])
+    parser.add_argument('-o', '--owner', default='Tech Inc')
+    parser.add_argument('-p', '--perms', default='Hack it')
+    parser.add_argument('name')
+    parser.add_argument('description')
+    args = parser.parse_args()
     
-    if cmd == "gen":
-        latex = genlatex(owner, permissions, name, description)
+    if args.action == "gen":
+        latex = genlatex(args.owner, args.perms, args.name, args.description)
         print(latex)
-    elif cmd == "print":
-        latex = genlatex(owner, permissions, name, description)
+    elif args.action == "print":
+        latex = genlatex(args.owner, args.perms, args.name, args.description)
         printlatex(latex)
-    else:
-        print "Usage: "+_+" gen|print owner permissions name description"
