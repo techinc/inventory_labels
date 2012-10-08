@@ -106,6 +106,23 @@ def printlatex(latex):
     os.chdir(olddir)
     shutil.rmtree(tmp)
     
+def latex2png(latex):
+    olddir = os.getcwd()
+    tmp = os.environ.get("TMPDIR","/tmp/")+"label/"
+    os.mkdir(tmp)
+    shutil.copyfile("techinc.eps", tmp+"techinc.eps")
+    os.chdir(tmp)
+    with open("label.tex", "w") as f:
+        f.write(latex)
+    subprocess.check_call(["xelatex", "label.tex"])
+    subprocess.check_call(["pdf2ps", "label.pdf", "label.ps"])
+    subprocess.check_call(["ps2png", "label.ps", "label.png"])
+    with open("label.png") as f:
+        img = f.read()
+    os.chdir(olddir)
+    shutil.rmtree(tmp)
+    return img
+    
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate and print labels for Technologia Incognita')
     parser.add_argument('action', choices=['gen','print'], help="[gen]erate LaTeX to stdout or [print] to send directly to printer.")
