@@ -92,9 +92,9 @@ def generate(owner, permissions, name, description):
 
 \\end{document}"""
 
-def printlatex(latex):
+def printlatex(latex, id='0'):
     olddir = os.getcwd()
-    tmp = os.environ.get("TMPDIR","/tmp/")+"label/"
+    tmp = os.environ.get("TMPDIR","/tmp/")+"label"+id+"/"
     os.mkdir(tmp)
     shutil.copyfile("techinc.eps", tmp+"techinc.eps")
     os.chdir(tmp)

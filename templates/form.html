@@ -4,23 +4,52 @@
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
 </head>
 <body>
-    <h1>Label Printer</h1>
-    <div class="row">
-        <form action="/print" method="post">
-            <div class="span2">
-                    <label for="name">Name: </label>
-                    <label for="desc">Description: </label>
-                    <label for="owner">Owner: </label>
-                    <label for="perms">Permissions: </label>
-            </div>
-            <div class="span10">
-                <input type="text" name="name" placeholder="Item name"/><br/>
-                <input type="text" name="desc" placeholder="Description"/><br/>
-                <input type="text" name="owner" placeholder="TechInc"/><br/>
-                <input type="text" name="perms" placeholder="Hack it"/><br/>
-                <input name="submit" type="submit" value="Print"/>
-            </div>
-        </form>
+    <div class="container">
+        <div class="page-header">
+            <h1>Label printer</h1>
+        </div>
+        <div class="row">
+            <form action="/print" method="post">
+                <div class="span2">
+                    <form class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label" for="name">Item name</label>
+                            <div class="controls">
+                                <input type="text" id="name" placeholder="Item name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="desc">Description</label>
+                            <div class="controls">
+                                <textarea id="desc" placeholder="Description"></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="owner">Owner</label>
+                            <div class="controls">
+                                <input type="text" id="owner" placeholder="TechInc">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="perms">Permissions</label>
+                            <div class="controls">
+                                <select id="perms">
+                                    <option>Hack</option>
+                                    <option>Hack non-destructively</option>
+                                    <option>Do not hack</option>
+                                    <option>Ask permission first</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button name="submit" type="submit" class="btn btn-primary"><i class="icon-print icon-white"></i> Print</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </form>
+        </div>
     </div>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 </body>

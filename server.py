@@ -20,7 +20,7 @@ def printlabel():
     if(perms == ''):
         perms = 'Hack it'
     latex = generate(owner, perms, name, desc)
-    printlatex(latex)
+    printlatex(latex, str(id(request)))
     return 'Label printed.'
 
 if __name__ == '__main__':
