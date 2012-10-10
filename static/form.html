@@ -10,7 +10,7 @@
         </div>
         <div class="row">
             <form action="/print" method="post">
-                <div class="span2">
+                <div class="span3">
                     <form class="form-horizontal">
                         <div class="control-group">
                             <label class="control-label" for="name">Item name</label>
@@ -41,15 +41,17 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-actions">
-                            <button name="submit" type="submit" class="btn btn-primary"><i class="icon-print icon-white"></i> Print</button>
-                        </div>
+                        <div class="control-group btn-group">
+                            <button name="submit" type="submit" id="submit" class="btn btn-primary"><i class="icon-print icon-white"></i> Print</button>
+							<button class="btn" id="preview">Preview</button>
+						</div>
                     </form>
                 </div>
             </form>
         </div>
     </div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="js/form.js"></script>
 </body>
 </html>
