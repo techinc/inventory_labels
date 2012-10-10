@@ -5,6 +5,7 @@ $("button").click(function() {
     $(this).button('loading');
 	$.ajax({
 		url: this.id,
+        type: 'POST',
 		data: $('form').serialize(),
 		success: function(data) {
 			$('#results').html(data);
