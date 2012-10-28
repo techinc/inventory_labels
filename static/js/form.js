@@ -9,7 +9,6 @@ $("button").click(function() {
 		data: $('form').serialize(),
 		success: function(data) {
 			$('#results').html(data);
-			alert('Load was performed.');
 		},
         error: function(jqXHR, textStatus) {
             fancyError('Something went wrong: '+textStatus);
