@@ -23,5 +23,20 @@ def printlabel():
     printlatex(latex, str(id(request)))
     return 'Label printed.'
 
+@app.route('/preview', methods=['GET'])
+def preview():
+    if(request.values.get('name','') == '' or request.values.get('desc','') == ''):
+        return 400
+    name = request.values.get('name','')
+    desc = request.values.get('desc','')
+    owner = request.values.get('owner','')
+    if(owner == ''):
+        owner = 'TechInc'
+    perms = request.values.get('perms','')
+    if(perms == ''):
+        perms = 'Hack it'
+    latex = generate(owner, perms, name, desc)
+    png = latex2png(latex)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)
