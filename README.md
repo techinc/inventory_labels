@@ -1,4 +1,3 @@
-
 == Inventory system for Technologia Incognita ==
 
 label_gen/ : label generation
