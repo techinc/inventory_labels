@@ -1,4 +1,4 @@
-== Inventory system for Technologia Incognita ==
+##Inventory system for Technologia Incognita
 
 label_gen/ : label generation
 
@@ -6,10 +6,11 @@ Needed packages (Ubuntu): texlive-xetex texlive-latex-recommended texlive-latex-
 
 Usage for label:
 
-usage: label.py [-h] [-o OWNER] [-p PERMS] {gen,print} name description
+usage: `label.py [-h] [-o OWNER] [-p PERMS] {gen,print} name description`
 
 Generate and print labels for Technologia Incognita
 
+```
 positional arguments:
   {gen,print}           [gen]erate LaTeX to stdout or [print] to send directly
                         to printer.
